@@ -6,7 +6,7 @@ body {
 }
 
 .menu {
-    background-color: #333;
+    background-color: #ff69b4; /* Pink */
     overflow: hidden;
 }
 
@@ -19,14 +19,14 @@ body {
 }
 
 .menu a:hover {
-    background-color: #4CAF50;
+    background-color: #007bff; /* Blue */
 }
 
 .container {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #fff;
+    background-color: #cce5ff; /* Light Blue */
     border-radius: 5px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
@@ -57,7 +57,7 @@ input {
 button {
     width: 100%;
     padding: 10px;
-    background-color: #4CAF50;
+    background-color: #007bff; /* Blue */
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -65,5 +65,5 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #0056b3; /* Darker Blue */
 }
