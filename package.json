@@ -3,7 +3,8 @@
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "prepare": "husky install"
     },
     "repository": {
         "type": "git",
@@ -17,6 +18,7 @@
     "homepage": "https://github.com/Njit-Tao7/AIVENTURE#readme",
     "description": "",
     "devDependencies": {
-        "prettier": "3.0.0"
+        "prettier": "3.0.0",
+        "husky": "^8.0.0"
     }
 }

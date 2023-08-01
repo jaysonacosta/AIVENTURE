@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "\033[1;37mChecking files using Prettier ⌛️\033[0m\n"
+npx prettier . --check
