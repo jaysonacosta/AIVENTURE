@@ -2,9 +2,11 @@ import Head from "next/head";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import Link from "next/link";
+import Layout from "@/layouts/layout";
 
 export default function Adventures() {
-  const { status, data: session } = useSession();
+  const { status } = useSession();
   const router = useRouter();
 
   useEffect(() => {
@@ -19,13 +21,18 @@ export default function Adventures() {
     content = <h1>Loading...</h1>;
   } else if (status === "authenticated") {
     content = (
-      <>
-        {" "}
-        <h1 className="text-xl font-extrabold tracking-tight text-gray-800">{`Hi, ${session.user.name}`}</h1>
-        <h1 className="text-xl font-extrabold tracking-tight text-gray-800">
-          My Adventures
-        </h1>
-      </>
+      <div className="p-5">
+        <div className="flex justify-between">
+          <h1 className="text-3xl font-extrabold tracking-tight text-gray-800">
+            My Adventures
+          </h1>
+          <Link href="/new-adventure">
+            <button className="rounded-full bg-slate-300 px-10 py-3 font-bold text-gray-800 no-underline transition hover:bg-slate-300/80">
+              New Adventure
+            </button>
+          </Link>
+        </div>
+      </div>
     );
   }
 
@@ -35,7 +42,7 @@ export default function Adventures() {
         <title>AIVenture | Adventures</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="">{content}</main>
+      <Layout>{content}</Layout>
     </>
   );
 }
