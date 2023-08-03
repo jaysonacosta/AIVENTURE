@@ -44,6 +44,9 @@ export const authOptions: NextAuthOptions = {
         id: user.id,
       },
     }),
+    redirect({ url, baseUrl }) {
+      return `${baseUrl}/adventures`;
+    },
   },
   adapter: PrismaAdapter(prisma),
   providers: [
