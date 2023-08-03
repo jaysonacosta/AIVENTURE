@@ -67,3 +67,50 @@ button {
 button:hover {
     background-color: #0056b3; /* Darker Blue */
 }
+
+/* Existing styles for the menu and container */
+
+/* Existing styles for the menu and container */
+
+.dungeon-master-text {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.user-input {
+    margin-top: 20px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+/* Update button width */
+button {
+    flex: 1;
+    padding: 10px;
+    background-color: #007bff; /* Blue */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Adjust button width for different screens */
+@media (max-width: 600px) {
+    .button-group {
+        flex-direction: column;
+    }
+
+    button {
+        width: 100%;
+        margin-top: 5px;
+    }
+}
+
+/* Existing styles for the other elements */
