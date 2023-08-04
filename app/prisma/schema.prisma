@@ -10,10 +10,22 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Example {
-    id        String   @id @default(cuid())
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+model Adventure {
+    id            String          @id @default(cuid())
+    createdAt     DateTime        @default(now())
+    updatedAt     DateTime        @updatedAt
+    adventureName String
+    characterName String
+    adventureLog  AdventureText[]
+    user          User            @relation(fields: [userId], references: [id])
+    userId        String
+}
+
+model AdventureText {
+    id          String    @id @default(cuid())
+    adventureId String
+    createdAt   DateTime  @default(now())
+    Adventure   Adventure @relation(fields: [adventureId], references: [id])
 }
 
 // Necessary for Next auth
@@ -44,13 +56,14 @@ model Session {
 }
 
 model User {
-    id            String    @id @default(cuid())
+    id            String      @id @default(cuid())
     name          String?
-    email         String?   @unique
+    email         String?     @unique
     emailVerified DateTime?
     image         String?
     accounts      Account[]
     sessions      Session[]
+    Adventure     Adventure[]
 }
 
 model VerificationToken {
