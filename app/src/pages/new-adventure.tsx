@@ -3,6 +3,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Layout from "@/layouts/layout";
+import { api } from "@/utils/api";
 
 export default function NewAdventure() {
   const { status } = useSession();
@@ -11,16 +12,22 @@ export default function NewAdventure() {
   const [adventureName, setAdventureName] = useState("");
   const [characterName, setCharacterName] = useState("");
 
+  const create = api.adventure.create.useMutation();
+
   useEffect(() => {
     if (status === "unauthenticated") {
       void router.push("/");
     }
-  }, [status, router]);
+
+    if (create.isSuccess) {
+      const adventureId = create.data.id;
+      void router.push(`/adventures/${adventureId}`);
+    }
+  }, [status, router, create]);
 
   const handleSubmit = (evt: React.FormEvent) => {
     evt.preventDefault();
-    console.log(adventureName);
-    console.log(characterName);
+    create.mutate({ adventureName, characterName });
   };
 
   let content;
@@ -34,6 +41,14 @@ export default function NewAdventure() {
           New Adventure
         </h1>
         <br />
+        {create.isError && (
+          <>
+            <div className="border-2 border-red-500 bg-red-300 p-5 text-white">
+              {create.error.message}
+            </div>
+            <br />
+          </>
+        )}
         <form onSubmit={handleSubmit}>
           <div className="flex flex-col">
             <label htmlFor="adventureName">Adventure Name</label>
