@@ -16,7 +16,13 @@ export default function Adventure({
       </div>
       <div className="p-3">
         <p className="text-lg text-gray-800">{characterName}</p>
-        <p className="text-lg text-gray-800">{lastPlayed.toUTCString()}</p>
+        <p className="text-lg text-gray-800">
+          {lastPlayed.toLocaleDateString("en-US", {
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+          })}
+        </p>
       </div>
     </div>
   );
