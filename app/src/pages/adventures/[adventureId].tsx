@@ -8,7 +8,7 @@ import { useEffect } from "react";
 export default function AdventureId() {
   const router = useRouter();
   const { status } = useSession();
-  const { data: adventure } = api.adventure.getById.useQuery(
+  const { data: adventure, isLoading } = api.adventure.getById.useQuery(
     { adventureId: router.query.adventureId as string },
     { enabled: router.isReady }
   );
@@ -20,7 +20,7 @@ export default function AdventureId() {
   }, [status, router]);
 
   let content;
-  if (!router.isReady) {
+  if (!router.isReady || isLoading) {
     content = <div>Loading...</div>;
   }
 
