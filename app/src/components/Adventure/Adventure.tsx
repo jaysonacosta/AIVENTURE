@@ -10,11 +10,11 @@ export default function Adventure({
   lastPlayed,
 }: Props) {
   return (
-    <div className="flex flex-col rounded bg-gray-400">
-      <div className="bg-gray-900">
-        <p className="text-xl text-white">{adventureName}</p>
+    <div className="flex flex-col overflow-hidden rounded bg-gray-200">
+      <div className="bg-gray-900 p-3">
+        <p className="truncate text-lg font-bold text-white">{adventureName}</p>
       </div>
-      <div>
+      <div className="p-3">
         <p className="text-lg text-gray-800">{characterName}</p>
         <p className="text-lg text-gray-800">{lastPlayed.toUTCString()}</p>
       </div>

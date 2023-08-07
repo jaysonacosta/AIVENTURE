@@ -4,10 +4,17 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Link from "next/link";
 import Layout from "@/layouts/layout";
+import { api } from "@/utils/api";
+import Adventure from "@/components/Adventure/Adventure";
 
 export default function Adventures() {
   const { status } = useSession();
   const router = useRouter();
+  const {
+    data: adventures,
+    isLoading,
+    isSuccess,
+  } = api.adventure.getAll.useQuery();
 
   useEffect(() => {
     if (status === "unauthenticated") {
@@ -32,6 +39,25 @@ export default function Adventures() {
             </button>
           </Link>
         </div>
+        <br />
+        {isLoading && <div>Loading...</div>}
+        {isSuccess && (
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {adventures.map(
+              ({ adventureName, characterName, updatedAt, id }) => {
+                return (
+                  <Link href={`adventures/${id}`} key={id}>
+                    <Adventure
+                      adventureName={adventureName}
+                      characterName={characterName}
+                      lastPlayed={updatedAt}
+                    />
+                  </Link>
+                );
+              }
+            )}
+          </div>
+        )}
       </div>
     );
   }
