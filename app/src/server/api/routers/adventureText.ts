@@ -36,7 +36,7 @@ export const adventureTextRouter = createTRPCRouter({
       const generatedText = await openai.createChatCompletion({
         model: "gpt-3.5-turbo",
         messages: history.map((entry) => ({
-          role: entry.role as string,
+          role: entry.role,
           content: entry.text,
         })) as ChatCompletionRequestMessage[],
       });
